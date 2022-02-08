@@ -3,8 +3,6 @@ source("find_rho.r")
 source("Kalman_Filter.r")
 
 # This is the main script file. 
-# 
-# 
 
 # Global variables are defined
 
@@ -116,7 +114,7 @@ for(t in 1:n.traits){
 # Plot the observed and predicted changes. 
 
 par(mfrow=c(3,2),mar=c(2,2,0,0)+2, mgp=c(2,1,0))
-for(trait in 1:5){
+for(trait in 1:n.traits){
   y.max <- max(c(dmuKK[,trait],dmuLL[,trait],dmuRR[,trait]),na.rm=T)
   y.min <- min(c(dmuKK[,trait],dmuLL[,trait],dmuRR[,trait]),na.rm=T)
   
