@@ -4,8 +4,8 @@ KB <- function(dmuLt,dmut,rho,C,L.dyn,Phi,X) {
   
   dmuKt <- NA # Declare an array to store the predictions inside the window
   
-  for (i in n.rows:L.dyn){
-    Y <- c(dmuLt[i], dmut[i-1]) # Measurements
+  for (j in n.rows:L.dyn){
+    Y <- c(dmuLt[j], dmut[j-1]) # Measurements
     I <- diag(2)  # Diagonal matrix of size 2x2       
     
     #Kalman filter###############################################
@@ -14,8 +14,8 @@ KB <- function(dmuLt,dmut,rho,C,L.dyn,Phi,X) {
     Phi <- (I - K %*% C) %*% (Phi+I*rho)
     #############################################################
     
-    if (i == n.rows){ Pp=Phi ;  Xx=X  } # This is stored for the start of the next window
-    dmuKt <- c(dmuKt, dmuLt[i] + X[2]) # Append the prediction of the new method for i,
+    if (j == n.rows){ Pp=Phi ;  Xx=X  } # This is stored for the start of the next window
+    dmuKt <- c(dmuKt, dmuLt[j] + X[2]) # Append the prediction of the new method for j,
                                        # which is given by the breeder's prediction plus the bias
     
   }

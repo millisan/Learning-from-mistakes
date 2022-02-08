@@ -51,13 +51,13 @@ P <- as.matrix(read.table(paste("P.txt",sep="")))   # P-matrix at generation 1
 
 ###########################################################################################
 
-for (j in L.0:nmax){     # The method start in generation j
+for (i in L.0:nmax){     # The method start in generation i
   
   # Measured changes in the trait inside time window
-  dmu <- matrix(mu[ (j-L.dyn+2) : (j),] - mu[(j-L.dyn+1) : (j-1),], ncol=n.traits)
+  dmu <- matrix(mu[ (i-L.dyn+2) : (i),] - mu[(i-L.dyn+1) : (i-1),], ncol=n.traits)
   
   # Breeder's predictions inside the time window
-  Fs <- G %*% solve(P) %*%t (s[( j - L.dyn + 1 ) : j,])  
+  Fs <- G %*% solve(P) %*%t (s[( i - L.dyn + 1 ) : i,])  
   
   # Find parameter rho in the time window 
   # For the first NN generations, there is not enough data in the time
@@ -67,7 +67,7 @@ for (j in L.0:nmax){     # The method start in generation j
   # the rho that minimizes the prediction error (see Part III)
   NN=1
   
-  if (j < L.0+NN){
+  if (i < L.0+NN){
     best.rho.t <- c(0,0,0,0,0)
   }else{
     # Declare dummy arrays to store values during the identification of parameter rho (Part III)

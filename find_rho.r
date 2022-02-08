@@ -6,7 +6,7 @@ test.rho<-function(){
     
     # dmut stores the measured changes in trait means for trait t.
     # there is an extra zero because we have not measured the change
-    # dmut[j]=mu[j+1]-mu[j] 
+    # dmut[i]=mu[i+1]-mu[i] 
     dmut <- c(dmu[ , t], 0) 
     
     # Xb and Pb are taken from what was stored for each trait from the previous window

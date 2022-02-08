@@ -8,10 +8,10 @@ predict<-function(){
     
     # dmut stores the measured changes in trait means for trait t.
     # there is an extra zero because we have not measured the change
-    # dmut[j]=mu[j+1]-mu[j] 
+    # dmut[i]=mu[i+1]-mu[i] 
     dmut <- c(dmu[ , t], 0) 
 
-    if (j==L.0){
+    if (i==L.0){
       # The initial conditions for the state variables are the breeder's prediction
       # and bias=0
       Xb=c(dmuLt[L.0],0)
@@ -31,8 +31,8 @@ predict<-function(){
     
     # The last element inside the window has the prediction of interest,
     # which is the change in trait mean from i to i+1
-    dmuKK[j,t] <<- dmuKt[length(dmuKt)]
-    dmuLL[j,t] <<- dmuLt[length(dmuLt)]
+    dmuKK[i,t] <<- dmuKt[length(dmuKt)]
+    dmuLL[i,t] <<- dmuLt[length(dmuLt)]
     
     # The covariance of the error and the value of the states is 
     # stored for the next generation
