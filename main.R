@@ -36,9 +36,10 @@ PP<-matrix(,nrow=n.traits*n.cols, ncol=n.cols)  # PP stores the covariance matri
 
 # Declare the matrices that store the predicted and observed changes
 
-dmuKK <- matrix(,ncol=n.traits, nrow= nmax)
-dmuLL <- matrix(,ncol=n.traits, nrow= nmax)
-dmuRR <- matrix(,ncol=n.traits, nrow= nmax)
+dmuKK <- matrix(,ncol=n.traits, nrow= nmax) # Store the predicted change using the new method
+dmuLL <- matrix(,ncol=n.traits, nrow= nmax) # Store the predicted change using the breeder's equation
+dmuRR <- matrix(,ncol=n.traits, nrow= nmax) # Store the observed change
+
 
 ###########################################################################################
 
@@ -113,9 +114,6 @@ for(t in 1:n.traits){
 
 
 # Plot the observed and predicted changes. 
-# dmuRR is the observed change
-# dmuLL is the predicted change using the breeder's equation
-# dmuKK is the predicted change using the new method
 
 par(mfrow=c(3,2),mar=c(2,2,0,0)+2, mgp=c(2,1,0))
 for(trait in 1:5){
