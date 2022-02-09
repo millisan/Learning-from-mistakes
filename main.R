@@ -66,7 +66,7 @@ for (i in L.0:nmax){     # The method start in generation i
   # the rho that minimizes the prediction error (see Part III)
   NN=1
   
-  if (i < L.0+NN){
+  if (i <= L.0+NN){
     best.rho.t <- c(0,0,0,0,0)
   }else{
     # Declare dummy arrays to store values during the identification of parameter rho (Part III)
