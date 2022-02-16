@@ -110,7 +110,6 @@ for(t in 1:n.traits){
 }
 
 
-
 # Plot the observed and predicted changes. 
 
 par(mfrow=c(3,2),mar=c(2,2,0,0)+2, mgp=c(2,1,0))
