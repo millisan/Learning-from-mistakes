@@ -18,9 +18,13 @@ test.rho<-function(){
     dmuKt <- output [[1]]
     
     # Now we calculate the difference between the prediction using the method with a given rho 
-    # inside the window, against the observed change inside the window.
-    # The first element of dmu and the last element of dmuKt are removed so that the
-    # difference is compatible
+    # inside the window (i.e. dmuKt), against the observed change inside the window
+    # (i.e. dmurt). For the teeth experiments, dmurt is directly the measured change in
+    # trait means. For the fly wing experiments, dmurt is obtained by making a linear 
+    # regression inside the window.
+    # The first element of dmurt and the last element of dmuKt are removed so that the
+    # difference is compatible.
+    
     dmurt <- c(dmu[ c(-1), t])
     dmuKt <- dmuKt[-length(dmuKt)]
     
