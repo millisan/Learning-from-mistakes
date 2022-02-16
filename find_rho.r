@@ -15,15 +15,16 @@ test.rho<-function(){
     
     # The Kalman filter is run, with the given value of rho 
     output<-KB(dmuLt,dmut,rho,C,L.dyn,Pb,Xb)
-    dmuKt <- output [[1]]
+    dmuKt <- output [[1]] # dmuKt stores the predictions using the method inside the window
     
-    # Now we calculate the difference between the prediction using the method with a given rho 
-    # inside the window (i.e. dmuKt), against the observed change inside the window
-    # (i.e. dmurt). For the teeth experiments, dmurt is directly the measured change in
+    # Now we calculate the difference between the predictions using the method with a given rho 
+    # (i.e. dmuKt), against the observed changes inside the window (i.e. dmurt). 
+    # For the teeth experiments, dmurt is directly the measured change in
     # trait means. For the fly wing experiments, dmurt is obtained by making a linear 
     # regression of the mean of the trait inside the window.
-    # The first element of dmurt and the last element of dmuKt are removed so that the
-    # difference is compatible.
+    # The first element of dmurt is removed from the comparison because there is no
+    # prediction for the first generation in the window. The last element of dmuKt is removed
+    # because it corresponds to generation i, for which there is no observed change to compare.
     
     dmurt <- c(dmu[ c(-1), t])
     dmuKt <- dmuKt[-length(dmuKt)]
