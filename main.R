@@ -4,26 +4,32 @@ source("Kalman_Filter.r")
 
 # This is the main script file. 
 
-# Global variables are defined
+# Global variables are defined#############################################################
 
-nmax = 30       # Total number of generations in the experiment
-n.traits = 5    # Number of traits
+nmax <- 30       # Total number of generations in the experiment
+n.traits <- 5    # Number of traits
 L <- 5          # Maximum number of generations in the sliding time window
 
 C <- rbind(c(1, -1), c(1, 0)) # This is the matrix that relates the
                               # measurements to the states. See Appendix A.
 
-
 n.rows <- dim(C)[1]       # Dimensions of matrix C
 n.cols <- dim(C)[2]
 
 L.0 = 2  # Initial generation. We need at least 1 recorded change, so we
-# start in generation 2.
+         # start in generation 2.
 
 L.dyn = L.0   # Dynamic number of generations in the sliding time window. The 
               # maximum number is L. When there are less than L data points available
               # the window is as large as possible. This allows to correct predictions
               # even at the beginning of the experiment.
+
+NN=1  # For the first NN generations, there is not enough data in the time
+      # window to find rho. Then, we use rho = 0 and the method gives the same
+      # predictions as the breeder's equation. After those initial generations,
+      # we find the best rho by running the method inside the window and keeping
+      # the rho that minimizes the prediction error (see Part III)
+
 
 # Declare the matrices of covariances and states.
 
@@ -59,13 +65,6 @@ for (i in L.0:nmax){     # The method start in generation i
   Fs <- G %*% solve(P) %*%t (s[( i - L.dyn + 1 ) : i,])  
   
   # Find parameter rho in the time window 
-  # For the first NN generations, there is not enough data in the time
-  # window to find rho. Then, we use rho = 0 and the method gives the same
-  # predictions as the breeder's equation. After those initial generations,
-  # we find the best rho by running the method inside the window and keeping
-  # the rho that minimizes the prediction error (see Part III)
-  NN=1
-  
   if (i <= L.0+NN){
     best.rho.t <- c(0,0,0,0,0)
   }else{
