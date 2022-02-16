@@ -21,7 +21,7 @@ test.rho<-function(){
     # inside the window (i.e. dmuKt), against the observed change inside the window
     # (i.e. dmurt). For the teeth experiments, dmurt is directly the measured change in
     # trait means. For the fly wing experiments, dmurt is obtained by making a linear 
-    # regression inside the window.
+    # regression of the mean of the trait inside the window.
     # The first element of dmurt and the last element of dmuKt are removed so that the
     # difference is compatible.
     
